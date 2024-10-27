@@ -115,18 +115,18 @@ int signIn() {
         if (isLogin) {
             fprintf(stdout, "Please enter your password: ");
             struct termios oldTermios, newTermios;
-            tcgetattr(STDIN_FILENO, &oldTermios); // Сохраняем текущие настройки терминала
+            tcgetattr(STDIN_FILENO, &oldTermios);
 
             newTermios = oldTermios;
-            newTermios.c_lflag &= ~(ECHO | ECHONL); // Отключаем вывод символов на экран
-            tcsetattr(STDIN_FILENO, TCSANOW, &newTermios); // Применяем новые настройки
+            newTermios.c_lflag &= ~(ECHO | ECHONL);
+            tcsetattr(STDIN_FILENO, TCSANOW, &newTermios);
 
 
             string inputPassword;
             getline(cin, inputPassword);
             printf("\n");
 
-            tcsetattr(STDIN_FILENO, TCSANOW, &oldTermios); // Восстанавливаем старые настройки терминала
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldTermios);
             if (inputPassword == password(userData)) {
                 in.close();
                 return OK;
@@ -169,18 +169,18 @@ int signUp() {
         if (!isLogin) {
             fprintf(stdout, "Please enter your password: ");
             struct termios oldTermios, newTermios;
-            tcgetattr(STDIN_FILENO, &oldTermios); // Сохраняем текущие настройки терминала
+            tcgetattr(STDIN_FILENO, &oldTermios);
 
             newTermios = oldTermios;
-            newTermios.c_lflag &= ~(ECHO | ECHONL); // Отключаем вывод символов на экран
-            tcsetattr(STDIN_FILENO, TCSANOW, &newTermios); // Применяем новые настройки
+            newTermios.c_lflag &= ~(ECHO | ECHONL);
+            tcsetattr(STDIN_FILENO, TCSANOW, &newTermios);
 
 
             string inputPassword;
             getline(cin, inputPassword);
             printf("\n");
 
-            tcsetattr(STDIN_FILENO, TCSANOW, &oldTermios); // Восстанавливаем старые настройки терминала
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldTermios);
 
             if (passChesk(inputPassword) == ERROR) {
                 in.close();
