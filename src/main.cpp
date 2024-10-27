@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <termios.h>
 
 #define ERROR -1
 #define OK 0
@@ -14,8 +15,8 @@ int parsingArgs(int argc, char* argv[]) {
         return ERROR;
     } else {
         const char* flag = argv[1];
-        if (!strcmp(flag, "-sign-in") || !strcmp(flag, "-sign-up")) {
-            if (!strcmp(flag, "-sign-in")) {
+        if (!strcmp(flag, "--sign-in") || !strcmp(flag, "--sign-up")) {
+            if (!strcmp(flag, "--sign-in")) {
                 return SIGN_IN;
             } else {
                 return SIGN_UP;
@@ -66,8 +67,19 @@ int signIn() {
 
         if (isLogin) {
             fprintf(stdout, "Please enter your password: ");
+            struct termios oldTermios, newTermios;
+            tcgetattr(STDIN_FILENO, &oldTermios); // Сохраняем текущие настройки терминала
+
+            newTermios = oldTermios;
+            newTermios.c_lflag &= ~(ECHO | ECHONL); // Отключаем вывод символов на экран
+            tcsetattr(STDIN_FILENO, TCSANOW, &newTermios); // Применяем новые настройки
+
+
             string inputPassword;
             getline(cin, inputPassword);
+            printf("\n");
+
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldTermios); // Восстанавливаем старые настройки терминала
             if (inputPassword == password(userData)) {
                 return OK;
             } else {
