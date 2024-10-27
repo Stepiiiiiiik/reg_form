@@ -5,13 +5,13 @@
 You can select `sign in` or `sign up` mode when you launch the app with flags:
 
 ```bash
-src/user_reg --sign-in
+./application --sign-in
 ```
 To `sign in`.
 
 And:
 ```bash
-src/user_reg --sign-up
+./application --sign-up
 ```
 To `sign up`.
 
