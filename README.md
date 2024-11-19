@@ -1,6 +1,6 @@
 # Console sign in and sign up application
 
-## This console app is implemented in C++. It use txt file to write and read logins and passwords.
+## This console app is implemented in C++. It use txt file to write and read logins and passwords hash.
 
 You can select `sign in` or `sign up` mode when you launch the app with flags:
 
